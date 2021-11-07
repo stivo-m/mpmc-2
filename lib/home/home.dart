@@ -51,14 +51,14 @@ class _HomeState extends State<Home> {
                 "Welcome, Steven Maina",
                 style: Theme.of(context)
                     .textTheme
-                    .display1
+                    .headline1
                     .copyWith(fontSize: 25, fontWeight: FontWeight.w200),
               )
             : Text(
                 _pages[index],
                 style: Theme.of(context)
                     .textTheme
-                    .display1
+                    .headline1
                     .copyWith(fontSize: 25, fontWeight: FontWeight.w200),
               ),
         centerTitle: false,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mpmc/home/home.dart';
 
 import 'bloc/bloc.dart';
@@ -46,7 +45,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               isAuthenticating = false;
               error = "Success";
               errorColor = Colors.green;
-              Scaffold.of(context).showSnackBar(SnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 backgroundColor: Colors.green,
                 content: Text(
                   "SignedIn as : ${state.name}, ${state.user.email}",
@@ -72,7 +71,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               isAuthenticating = false;
               error = "Error Occured While Loging In";
               errorColor = Colors.red;
-              Scaffold.of(context).showSnackBar(SnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 backgroundColor: Colors.red,
                 content: Text(
                   "Login Error: ${state.error}",
@@ -96,7 +95,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 textAlign: TextAlign.center,
                 style: Theme.of(context)
                     .textTheme
-                    .display1
+                    .headline1
                     .copyWith(fontSize: 50, fontWeight: FontWeight.w200),
               ),
               SizedBox(
@@ -107,7 +106,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 textAlign: TextAlign.center,
                 style: Theme.of(context)
                     .textTheme
-                    .display1
+                    .headline1
                     .copyWith(fontSize: 30, fontWeight: FontWeight.w100),
               ),
               SizedBox(
@@ -244,7 +243,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         SizedBox(
           height: 40,
         ),
-        _googleSigninButton(context),
+        // _googleSigninButton(context),
       ],
     );
   }
@@ -264,7 +263,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       disabledColor: Theme.of(context).highlightColor,
       elevation: 5,
       minWidth: double.infinity,
-      color: Theme.of(context).buttonColor,
+      color: Theme.of(context).buttonTheme.colorScheme.background,
       onPressed: isAuthenticating
           ? null
           : () {
@@ -273,42 +272,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Text("REGISTER")),
-    );
-  }
-
-  _googleSigninButton(BuildContext context) {
-    return MaterialButton(
-      disabledColor: Theme.of(context).highlightColor,
-      elevation: 5,
-      minWidth: double.infinity,
-      color: Theme.of(context).buttonTheme.colorScheme.onPrimary,
-      onPressed: isAuthenticating
-          ? null
-          : () {
-              // _doSignUp("google", context);
-            },
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Icon(
-              FontAwesomeIcons.google,
-              color: Colors.black, //Theme.of(context).textTheme.display1.color,
-            ),
-            SizedBox(
-              width: 5,
-            ),
-            Text(
-              "Google",
-              style: Theme.of(context)
-                  .textTheme
-                  .display1
-                  .copyWith(color: Colors.black, fontSize: 23),
-            ),
-          ],
-        ),
-      ),
     );
   }
 

@@ -103,7 +103,7 @@ class _ChatListsScreenState extends State<ChatListsScreen> {
                                   "12:24pm",
                                   style: Theme.of(context)
                                       .textTheme
-                                      .body1
+                                      .bodyText1
                                       .copyWith(fontSize: 10),
                                 ),
                               ],

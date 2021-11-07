@@ -124,26 +124,6 @@ class _MoneyScreenState extends State<MoneyScreen> {
                     child: Text("Monthly Contributions"),
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.black54),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Event's Contributions"),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.black54),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Other"),
-                  ),
-                )
               ],
             ),
             SizedBox(
@@ -187,9 +167,9 @@ class _MoneyScreenState extends State<MoneyScreen> {
                 minWidth: double.infinity,
                 onPressed: filled
                     ? () {
-                      print("NUMBER:  ${userData.data["number"]}");
-                        respository.payWithMpesa(
-                            "Monthly Contribution", amount, userData.data["number"]);
+                        print("NUMBER:  ${userData.data["number"]}");
+                        respository.payWithMpesa("Monthly Contribution", amount,
+                            userData.data["number"]);
                       }
                     : null,
                 color: Colors.blue,

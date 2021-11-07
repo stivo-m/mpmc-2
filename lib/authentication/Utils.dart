@@ -59,6 +59,19 @@ class UserRespository {
     });
   }
 
+  Future addMemberTolist({String name, String phoneNumber}) async {
+    await respository.db.collection("Members").add({
+      "name": name,
+      "phoneNumber": phoneNumber,
+      "added_by": respository.user.email,
+      "last_updated": DateTime.now()
+    }).catchError((onError) {
+      print(onError.toString());
+    }).then((onValue) {
+      print(onValue.documentID);
+    });
+  }
+
   Future detleteEvent(String id) async {
     await respository.db
         .collection("Events")
@@ -88,6 +101,13 @@ class UserRespository {
     return await db.collection("users").document(user.uid).get();
   }
 
+  Future<QuerySnapshot> getMembers() async {
+    return await db.collection("Members").getDocuments();
+  }
+    Future<QuerySnapshot> getEvents() async {
+    return await db.collection("Events").getDocuments();
+  }
+
   Future<FirebaseUser> signInWithEmailAndPassword(
       String email, String password) async {
     await _auth
@@ -111,7 +131,6 @@ class UserRespository {
         .then((AuthResult authResult) async {
       user = authResult.user;
       handleMpesaInitialization();
-     
 
       UserUpdateInfo info = UserUpdateInfo();
       info.displayName = name;
@@ -119,7 +138,7 @@ class UserRespository {
 
       await user.updateProfile(info);
       await user.reload();
-       await _saveUserData(user, name, number);
+      await _saveUserData(user, name, number);
       user.sendEmailVerification();
     });
 
@@ -160,8 +179,8 @@ class UserRespository {
     if (user != null) {
       DocumentReference data = db.document("users/" + user.uid);
       await data.setData({
-        "name" : name,
-        "photoURL" : "https://static.thenounproject.com/png/538846-200.png",
+        "name": name,
+        "photoURL": "https://static.thenounproject.com/png/538846-200.png",
         "uid": user.uid,
         "email": user.email,
         "isVerified": user.isEmailVerified,

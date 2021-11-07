@@ -20,7 +20,7 @@ class _NewChatState extends State<NewChat> {
         title: Text("Start New Chat",
             style: Theme.of(context)
                 .textTheme
-                .display1
+                .headline1
                 .copyWith(fontSize: 25, fontWeight: FontWeight.w200)),
       ),
       body: StreamBuilder(
