@@ -15,7 +15,7 @@ class _PreferenceState extends State<Preference> {
       appBar: AppBar(
         title: Text(
           'MPMC',
-          style: Theme.of(context).textTheme.display1,
+          style: Theme.of(context).textTheme.headline1,
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios,
@@ -31,8 +31,8 @@ class _PreferenceState extends State<Preference> {
           return Card(
             color: appThemes[item].primaryColor,
             child: ListTile(
-              title:
-                  Text(item.toString(), style: appThemes[item].textTheme.body1),
+              title: Text(item.toString(),
+                  style: appThemes[item].textTheme.bodyText1),
               onTap: () => BlocProvider.of<ThemeBloc>(context)
                   .dispatch(ThemeChaned(theme: item)),
             ),

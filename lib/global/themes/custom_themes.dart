@@ -16,9 +16,6 @@ final appThemes = {
       appBarTheme: AppBarTheme(
         actionsIconTheme: IconThemeData(color: Colors.black),
         iconTheme: IconThemeData(color: Colors.black),
-        textTheme:
-            TextTheme(display1: TextStyle(color: Colors.black, fontSize: 11)),
-        brightness: Brightness.light,
         color: Colors.transparent,
         elevation: 0,
       )),
@@ -31,7 +28,6 @@ final appThemes = {
       ),
       appBarTheme: AppBarTheme(
         actionsIconTheme: IconThemeData(color: Colors.white),
-        brightness: Brightness.dark,
         color: Colors.transparent,
         elevation: 0,
       )),

@@ -17,9 +17,13 @@ class _EventsScreenState extends State<EventsScreen> {
 
   @override
   void initState() {
-    titles = ["Add", "Schedule", "Meeting", "Request"];
+    titles = [
+      "Add",
+    ];
 
-    subtitles = ["Event", "Meeting", "Minutes", "Funds"];
+    subtitles = [
+      "Event",
+    ];
 
     colors = [Colors.blue, Colors.purple, Colors.orange, Colors.green];
 
@@ -29,25 +33,37 @@ class _EventsScreenState extends State<EventsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      controller: ScrollController(),
-      scrollDirection: Axis.vertical,
-      itemCount: titles.length,
-      itemBuilder: (context, index) {
-        return CustomHomeCards(
-          color: colors[index],
-          onPress: () {
-            switch (index) {
-              case 0:
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => AddNewEventPage()));
-            }
-          },
-          subtitle: subtitles[index],
-          title: titles[index],
-        );
-      },
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            controller: ScrollController(),
+            scrollDirection: Axis.vertical,
+            itemCount: titles.length,
+            itemBuilder: (context, index) {
+              return CustomHomeCards(
+                color: colors[index],
+                onPress: () {
+                  switch (index) {
+                    case 0:
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              AddNewEventPage()));
+                  }
+                },
+                subtitle: subtitles[index],
+                title: titles[index],
+              );
+            },
+          ),
+
+          // list of the events
+
+          EventsLists()
+        ],
+      ),
     );
   }
 }
@@ -304,7 +320,7 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
                               submitting = false;
                             });
                             Icon(Icons.verified_user, color: Colors.white);
-                            Scaffold.of(context).showSnackBar(SnackBar(
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(state.state,
                                   style: TextStyle(color: Colors.white)),
                               backgroundColor: Colors.green,
@@ -321,7 +337,7 @@ class _AddNewEventPageState extends State<AddNewEventPage> {
                             setState(() {
                               submitting = false;
                             });
-                            Scaffold.of(context).showSnackBar(SnackBar(
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(state.state,
                                   style: TextStyle(color: Colors.white)),
                               backgroundColor: Colors.red,

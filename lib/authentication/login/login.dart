@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
               isAuthenticating = false;
               error = "Success";
               errorColor = Colors.green;
-              Scaffold.of(context).showSnackBar(SnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 backgroundColor: Colors.green,
                 content: Text(
                   "SignedIn as : ${state.name}, ${state.user.email}",
@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
               isAuthenticating = false;
               error = "Error Occured While Loging In";
               errorColor = Colors.red;
-              Scaffold.of(context).showSnackBar(SnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 backgroundColor: Colors.red,
                 content: Text(
                   "Login Error: ${state.error}",
@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 textAlign: TextAlign.center,
                 style: Theme.of(context)
                     .textTheme
-                    .display1
+                    .headline1
                     .copyWith(fontSize: 50, fontWeight: FontWeight.w200),
               ),
               SizedBox(
@@ -102,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 textAlign: TextAlign.center,
                 style: Theme.of(context)
                     .textTheme
-                    .display1
+                    .headline1
                     .copyWith(fontSize: 30, fontWeight: FontWeight.w100),
               ),
               SizedBox(
@@ -230,7 +230,7 @@ class _LoginScreenState extends State<LoginScreen> {
       disabledColor: Theme.of(context).highlightColor,
       elevation: 5,
       minWidth: double.infinity,
-      color: Theme.of(context).buttonColor,
+      color: Theme.of(context).buttonTheme.colorScheme.background,
       onPressed: isAuthenticating
           ? null
           : () {
@@ -241,7 +241,6 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Text("LOGIN")),
     );
   }
-
 
   _doSignIn(String methodType, BuildContext context) {
     if (methodType == "google") {

@@ -30,7 +30,7 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
         title: Text(
           widget.chatUser.data["name"],
-          style: Theme.of(context).textTheme.display1.copyWith(fontSize: 18),
+          style: Theme.of(context).textTheme.headline1.copyWith(fontSize: 18),
         ),
         centerTitle: true,
       ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mpmc/members/add_member.dart';
+import 'package:mpmc/members/list_members.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -15,16 +17,10 @@ class _DashboardState extends State<Dashboard> {
 
     updates = [
       "New Members",
-      "Recent Talks",
-      "Future Events",
-      "Upcoming Meetings"
     ];
 
     descriptions = [
       "Click to meet new Members",
-      "View Last Blog Topics",
-      "Know when next events occur",
-      "Know next meeting dates"
     ];
 
     icons = [
@@ -32,18 +28,6 @@ class _DashboardState extends State<Dashboard> {
         Icons.person_add,
         size: 40,
       ),
-      Icon(
-        Icons.book,
-        size: 40,
-      ),
-      Icon(
-        Icons.event_available,
-        size: 40,
-      ),
-      Icon(
-        Icons.edit,
-        size: 40,
-      )
     ];
   }
 
@@ -58,7 +42,7 @@ class _DashboardState extends State<Dashboard> {
               textAlign: TextAlign.center,
               style: Theme.of(context)
                   .textTheme
-                  .display1
+                  .headline1
                   .copyWith(fontSize: 35, fontWeight: FontWeight.w200),
             ),
             SizedBox(
@@ -71,22 +55,14 @@ class _DashboardState extends State<Dashboard> {
               onPress: () {},
             ),
             CustomHomeCards(
-              title: "Last Meeting Minutes",
-              subtitle: "July 2019",
-              color: Colors.yellow[800],
-              onPress: () {},
-            ),
-            CustomHomeCards(
-              title: "Meet the",
-              subtitle: "Team",
-              color: Colors.purple,
-              onPress: () {},
-            ),
-            CustomHomeCards(
               title: "Meet the",
               subtitle: "Members",
               color: Colors.blue,
-              onPress: () {},
+              onPress: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => AddMember(),
+                ));
+              },
             ),
             SizedBox(height: 40),
             Row(
@@ -97,7 +73,7 @@ class _DashboardState extends State<Dashboard> {
                   textAlign: TextAlign.center,
                   style: Theme.of(context)
                       .textTheme
-                      .display1
+                      .headline1
                       .copyWith(fontSize: 35, fontWeight: FontWeight.w200),
                 )
               ],
@@ -124,20 +100,29 @@ class _DashboardState extends State<Dashboard> {
                   return ListTile(
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                    onTap: () {},
+                    onTap: () {
+                      if (index == 0)
+                        return Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return ListMembers();
+                            },
+                          ),
+                        );
+                    },
                     leading: icons[index],
                     title: Text(
                       updates[index],
                       style: Theme.of(context)
                           .textTheme
-                          .display1
+                          .headline1
                           .copyWith(fontSize: 20, fontWeight: FontWeight.w200),
                     ),
                     subtitle: Text(
                       descriptions[index],
                       style: Theme.of(context)
                           .textTheme
-                          .display1
+                          .headline1
                           .copyWith(fontSize: 14, fontWeight: FontWeight.w300),
                     ),
                   );
